@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postage Calculator</title>
+</head>
+<body>
+    <form action ="/postageMath" method = "GET">
+        <select class="method" name="method">
+            <option disabled>Select A Choice</option>
+            <option value="priority-express">Priority Express</option>
+            <option value="priority-mail">Priority Mail</option>
+            <option value="first-class-mail">First Class Mail - Use Ounces!</option>
+            <option value="first-class-package">First Class Package - Use Ounces!</option>
+            <option value="retail-ground">Retail Ground</option>
+        </select><br><br>
+        Weight: <input type="text" name="weight"><br>
+        <input type="submit" value="Calculate Rate">
+    </form>
+</body>
+</html>
