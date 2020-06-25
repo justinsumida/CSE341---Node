@@ -1,54 +1,44 @@
 const express = require('express')
-const path = require('path')
+var request = require('request-promise')
+const path = require('path');
+const { response } = require('express');
 const PORT = process.env.PORT || 5000
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/postageMath' , postageMath)
+  .get('/getValues' , getValues)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-function postageMath(req , res){
-  const shippingType = req.query.method;
-  const weight = Number(req.query.weight);
-  doMath(shippingType , weight, res);
-}
-
-function doMath(shippingType , weight, res){
-  let total = 0;
-  let price = 0;
-  let weightPrice = 0;
-  if(shippingType == "priority-express"){
-    price = 26.35;
-    if(weight > 1)  
-      weightPrice = weight * .4;
-    total = price + weightPrice;
-  }
-  else if(shippingType == "priority-mail"){
-    price = 7.50
-    if (weight > 1) 
-      weightPrice = weight * .6;
-    total = price + weightPrice;
-  }
-  else if(shippingType = "first-class-mail"){
-    price = 1;
-    if (weight > 1)
-      weightPrice = weight * .2;
-    total = price * weight; 
-  }
-  else if(shippingType = "first-class-package"){
-    price = 3.80;
-    total = price * weight;
-  }
-  else if(shippingType = "retail-ground"){
-    price = 7.50;
-    if (weight > 1)
-      weightPrice = weight  *.6;
-    total = price * weight;
+ 
+ function getValues(req , res){
+  const city = req.query.city;
+  const state = req.query.state;
+  const country = req.query.country;
+  findWeather(city, state, country, res).then(function(results){
+    var weather_data = {weather_data : results};
+    console.log(weather_data);
+  });
+  
   }
 
-  const params = {shippingType: shippingType , weight: weight, total: total};
-
-  res.render('pages/postage' , params);
+async function findWeather(city , state, country, res){
+  //if(state === ""){
+    var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=436f123420e5088b09867a190d053298`;
+  //}
+  //else{
+   // var url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&units=imperial&appid=436f123420e5088b09867a190d053298`;
+ // } 
+  var weather_body = await request(url);
+ 
+  var weather_json = JSON.parse(weather_body);
+  
+  var weather = {
+    city : city,
+    temperature : Math.round(weather_json.main.temp),
+    description : weather_json.weather.description,
+    icon : weather_json.weather.icon
+};
+return weather;
 }
