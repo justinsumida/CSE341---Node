@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Weather Watchers</title>
+    <script src="../index.js"></script>
 </head>
 <body>
     <header>
         <h1>The Weather Watchers</h1>
     </header>
 
-    <form action='/getValues' method="GET">
-        Please Enter A City: <input type="text" name="city" placeholder="rexburg"><br>
-        If Applicable, Please Enter A State: <input type="text" name="state" placeholder="id"><br>
-        Please Enter The Country: <input type="text" name="country" placeholder="us"><br>
-        <input type="submit" value="Get Weather">
+    <form method="POST">
+        Please Enter A City: <input type="text" id="city" name="city" placeholder="rexburg"><br>
+        If Applicable, Please Enter A State: <input type="text" id ="state" name="state" placeholder="id"><br>
+        Please Enter The Country: <input type="text" id="country" name="country" placeholder="us"><br>
+        <input type="button" value="Get Weather" onclick="getWeather()">
     </form>
+
+    <div id="weatherInfo"></div>
 </body>
 </html>
