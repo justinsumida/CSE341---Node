@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Weather Watchers</title>
-    <script src="../index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="static/weather.js"></script>
 </head>
 <body>
     <header>
         <h1>The Weather Watchers</h1>
     </header>
 
-    <form method="POST">
+    <form action = "/getWeather" method="GET" onsubmit="return ajax_formSubmitter(this);">
         Please Enter A City: <input type="text" id="city" name="city" placeholder="rexburg"><br>
         If Applicable, Please Enter A State: <input type="text" id ="state" name="state" placeholder="id"><br>
         Please Enter The Country: <input type="text" id="country" name="country" placeholder="us"><br>
-        <input type="button" value="Get Weather" onclick="getWeather()">
+        <input type="submit" value="Get Weather">
     </form>
 
     <div id="weatherInfo"></div>
