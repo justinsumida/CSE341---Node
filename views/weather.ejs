@@ -6,6 +6,7 @@
     <title>The Weather Watchers</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="static/weather.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <header>
@@ -13,12 +14,12 @@
     </header>
 
     <form action = "/getWeather" method="GET" onsubmit="return ajax_formSubmitter(this);">
-        Please Enter A City: <input type="text" id="city" name="city" placeholder="rexburg"><br>
-        If Applicable, Please Enter A State: <input type="text" id ="state" name="state" placeholder="id"><br>
-        Please Enter The Country: <input type="text" id="country" name="country" placeholder="us"><br>
+        Please Enter A City:<br> <input type="text" id="city" name="city" placeholder="Rexburg"><br>
+        If Applicable, Please Enter A State:<br> <input type="text" id ="state" name="state" placeholder="ID"><br>
+        Please Enter The Country:<br> <input type="text" id="country" name="country" placeholder="US"><br>
         <input type="submit" value="Get Weather">
-    </form>
+    </form><br>
 
-    <div id="weatherInfo"></div>
+    <div id="weatherInfo" style="visibility: hidden;"></div>
 </body>
 </html>

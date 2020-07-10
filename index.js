@@ -31,7 +31,7 @@ app.get('/getWeather' , function (req , res){
   .then(response => {
     console.log('This:');
     console.log(response.data);
-    res.status(200).json({name: response.data.name, temp: response.data.main.temp, feelLike: response.data.main.feels_like, cod: response.data.cod, icon: response.data.weather[0].icon, description: response.data.weather[0].description});
+    res.status(200).json({name: response.data.name, temp: response.data.main.temp_max, feelLike: response.data.main.feels_like, cod: response.data.cod, icon: response.data.weather[0].icon, description: response.data.weather[0].description});
   })
   .catch(error =>{
     console.log(error);
