@@ -17,15 +17,18 @@ function ajax_formSubmitter(form) {
       url: url,
       type: type,
       data: data,
-      error: function (jqXHR, exception){
+      /*error: function (jqXHR, exception){
         console.log(jqXHR);
-        if(jqXHR.status == 404){
         var content = '404 error, city not found. Please make sure to give two letter abbreviations for state and country.';
-        $('#weatherInfo').html(content);}
+        $('#weatherInfo').html(content);
+      },*/
+      error: function (request, status, error) {
+        console.log("Ajax Error");
+        alert(request.responseText);
       },
       success: function (response) {
         //console.log(response);
-        //console.log("Ajax success)");
+        console.log("Ajax success)");
         var content = '';
         if(response.cod == '200'){
             content += "<img src=\"http://openweathermap.org/img/w/" + response.icon + ".png\">"; 
